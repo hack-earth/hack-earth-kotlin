@@ -138,7 +138,8 @@ Some examples:
   an AST child location into an AST-node search query.
 * A skill that judges whether a given perspective will lead to a good solution may map the perspective
   into a two-class softmax. It may work from the root of the perspective, or it may start at a focal node
-  within the perspective and transform from there outward into a new clan that suits its purposes. 
+  within the perspective and transform from there outward into a new clan whose consept will be the
+  operation's input.
 
 
 
