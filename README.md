@@ -117,31 +117,30 @@ perspectives, such as for their likelihood of being or leading to correct soluti
 
 #### How do we apply deep learning?
 
-We represent our data as trees. Examples include ASTs, candidate AST fragments, symbol meta-data, etc.
-
+We view our data as trees. Examples include ASTs, candidate AST fragments, symbol meta-data, etc. 
 When we look at an AST, we don't see it through its original root node. Rather, we look at a particular "focal" node
 and see it as the root for our purposes. The original parent direction is now a downward direction.
 
-To operate on a tree, we convert it into a Wisdom clan. This reframes the existing tree as a new tree that suits
-our purposes. For deep learning, we want the shallowest, broadest trees that capture the essential information.
-(Deep neural nets aren't all that deep in the broader scheme of things. We want them as shallow as can capture
-the essence of the problem.)
+Our neural net structure is isomorphic to our input tree structure. Since our input tree structure generally varies
+from training example to training example (as with an AST), so does our neural net structure. We map each node of
+our input tree into a suitable block of neural net:
 
-A Wisdom imp may have one or more neural pathways running through it. One special pathway is the "consept". (Sorry,
-it was inevitable.) For a leaf imp, this is just a learned vector -- the embedding of that leaf. A non-leaf imp's 
-consept pathway rolls up the vectors of its subordinate consepts into a new vector.
+* We map the input node to a "conceptual node", representing what we feel is essentially unique about it. 
+  We choose some properties of the input node to roll into the identity of the conceptual nodes; we treat the
+  rest as subordinate conceptual nodes.
 
-Other imp neural pathways represent neural operations the imp can perform. These operations are functions from
-input vectors to output vectors. The primitive data type is the clan, with its corresponding vector the consept.
-Some examples:
-* A skill that proposes new AST nodes may do this through a neural operation that maps 
-  an AST child location into an AST-node search query.
-* A skill that judges whether a given perspective will lead to a good solution may map the perspective
-  into a two-class softmax. It may work from the root of the perspective, or it may start at a focal node
-  within the perspective and transform from there outward into a new clan whose consept will be the
-  operation's input.
+* We look up the neural net block ("concept block") for the conceptual node. This defines network structure plus 
+  weights that are shared across all instances of the conceptual node.
+  
+* There can be competing concept blocks for the same conceptual node. (Many details to be worked out.)
 
+* Between each (parent, child) pair of conceptual nodes, there is a "concept API". This defines the vector
+  dimensions that flow across the parent/child boundary, plus potentially other API parameters. The data type of this 
+  API is defined by the child and must be acceptable to the parent. It may define fixed parameters or a method by
+  which parent and child negotiate parameters.
 
+For deep learning, we want the shallowest, broadest trees that capture the essential information. (Deep neural nets 
+aren't all that deep in the broader scheme of things. We want them as shallow as can capture the essence of the problem.)
 
 
 
