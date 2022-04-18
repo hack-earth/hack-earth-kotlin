@@ -1,6 +1,6 @@
 # hack-earth-kotlin
 
-A Programming assistant for Kotlin™. Let's keep this to ourselves for a bit while we see what comes of it.
+Idea for a Programming assistant for Kotlin™. Yeah, this was before GitHub Copilot. But still some ideas.
 
 ## Functionality targets
 
